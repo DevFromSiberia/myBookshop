@@ -16,7 +16,11 @@ module.exports = {
         'css-loader',
         'sass-loader',
       ]
-    }]
+    },
+    {
+      test: /\.png/,
+      type: 'asset/resource'
+    }],
   },
   plugins: [
     new miniCss({

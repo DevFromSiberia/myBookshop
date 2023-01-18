@@ -1,3 +1,3 @@
-import './index.scss'
-
-console.log('hello bookshop');
+import './styles/index.scss'
+import { Header } from './components/Header'
+document.getElementById('root').appendChild(Header())
