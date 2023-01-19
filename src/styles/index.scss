@@ -1,8 +1,8 @@
 @import "./vars.scss";
 @import "./fonts.scss";
 @import "./reset.scss";
-@import "./header.scss";
-@import "../components/Card/index.scss";
+@import "./componentStyles/header.scss";
+@import "./componentStyles/card.scss";
 
 .body {
   background-color: white;
