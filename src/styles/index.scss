@@ -1,4 +1,14 @@
+@import "./vars.scss";
+@import "./fonts.scss";
 @import "./reset.scss";
+@import "./header.scss";
 @import "../components/Card/index.scss";
-@import "../components/Header/index.scss";
-@import "../components/Slider/index.scss";
+
+.body {
+  background-color: white;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1120px;
+}
