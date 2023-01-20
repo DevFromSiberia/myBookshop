@@ -2,7 +2,8 @@
 @import "./fonts.scss";
 @import "./reset.scss";
 @import "./componentStyles/header.scss";
-@import "./componentStyles/card.scss";
+@import "./componentStyles/categories.scss";
+@import "./componentStyles/booksList.scss";
 
 .body {
   background-color: white;
@@ -11,4 +12,12 @@
 .container {
   margin: 0 auto;
   max-width: 1120px;
+}
+
+.books {
+  padding-top: 46px;
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
 }
