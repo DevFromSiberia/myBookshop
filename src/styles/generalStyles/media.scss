@@ -1,3 +1,12 @@
+@media (max-width: 1550px) {
+  .swiper-button-1 {
+    right: 30px;
+  }
+  .swiper-button-2 {
+    right: 0px;
+  }
+}
+
 @media (max-width: 1200px) {
   .books__list {
     column-gap: 56px;
@@ -8,6 +17,12 @@
         }
       }
     }
+  }
+  .swiper-button-1 {
+    right: 50px;
+  }
+  .swiper-button-2 {
+    right: 20px;
   }
 }
 
@@ -29,6 +44,12 @@
       }
     }
   } 
+  .swiper-button-1 {
+    padding: 70px 20px 20px 20px;
+  }
+  .swiper-button-2 {
+    padding: 100px 42px 36px 26px;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -87,6 +108,12 @@
       }
     }       
   }
+  .swiper-button-1 { 
+    padding: 60px 10px 10px 10px;
+  }
+  .swiper-button-2 { 
+    padding: 60px 42px 20px 10px;
+  }
 }
 
 @media (max-width: 760px) {
@@ -98,6 +125,12 @@
         }
       }
     }
+  }
+  .swiper-button-1 { 
+    padding: 20px 10px 10px 10px;
+  }
+  .swiper-button-2 { 
+    padding: 20px 20px 20px 10px;
   }
 }
 
@@ -148,6 +181,18 @@
     grid-template-columns: repeat(3, 1fr);
     column-gap: 50px;
   }
+  .swiper-button-1, .swiper-button-2 {
+    .title {
+      font-size: 14px
+    }
+  }
+  .swiper-button-1 {
+    top: 30px;
+    padding: 10px 10px 10px 10px;
+  }
+  .swiper-button-2 {
+    padding: 10px 10px 10px 10px;
+  }
 }
 
 @media (max-width: 470px)  {
@@ -171,6 +216,13 @@
         }
       }
     }
+  }
+  .swiper-button-1 {
+    top: 30px;
+    
+  }
+  .swiper-button-2 {
+    bottom: 40px;
   }
 }
 
@@ -222,6 +274,16 @@
       }
     }       
   }
+  .swiper-button-1 {
+    top: 10px;
+  }
+
+  .swiper-button-1, .swiper-button-2 {
+    .title {
+      font-size: 12px
+    }
+  }
+  
 }
 
 @media (max-width: 350px) {
@@ -238,6 +300,15 @@
         min-width: calc(212px*0.7);
         height: calc(300px*0.7);
       }
+    }
+  }
+  .swiper-button-1 {
+    top: 0px;
+  }
+
+  .swiper-button-1, .swiper-button-2 {
+    .title {
+      font-size: 10px
     }
   }
 }
