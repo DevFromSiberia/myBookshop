@@ -1,0 +1,17 @@
+.body {
+  background-color: white;
+}
+
+.container {
+  margin: 0px auto;
+  max-width: 1160px;
+  padding: 0 20px;
+}
+
+.books {
+  padding-top: 46px;
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+}

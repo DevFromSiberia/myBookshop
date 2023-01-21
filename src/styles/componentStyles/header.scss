@@ -10,6 +10,7 @@
     .nav__list {
       display: flex;
       .nav__item {
+        margin-right: 40px;
         a {
           font-family: 'Montserrat';
           font-weight: 700;
@@ -18,7 +19,6 @@
           color: $textColor;
           transition: color ease-in-out 0.3s, text-shadow ease-in-out 0.3s;
         }
-        margin-right: 40px;
         &:last-child {
           margin-right: 0px;
         }
