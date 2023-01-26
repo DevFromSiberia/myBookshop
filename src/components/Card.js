@@ -8,7 +8,6 @@ export default function Card(book) {
   let price = formatPrice(book.saleInfo.listPrice)
   let imageUrl = book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : placeholderImg
 
-  console.log(book);
   const html = `<li class="books__item">
   <div style="background-image: url(${imageUrl});" class="cover"></div>
   <div class="descr">

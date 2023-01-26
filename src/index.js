@@ -1,8 +1,16 @@
 import './styles/index.scss'
 import { swiper, mySlider } from './components/Slider';
 import Card from './components/Card'
-const key = ''
-const url = `https://www.googleapis.com/books/v1/volumes?q="subject:Business"&key=${key}&printType=books&startIndex=0&maxResults=6&langRestrict=en`
+import { Category, categoryListener } from './components/Category'
+import { CONFIG } from './config'
+
+const categoriesData = ['Architecture', 'Art & Fashion', 'Biography', 'Business', 'Crafts & Hobbies', 'Drama', 'Fiction', 'Food & Drink', 'Health & Wellbeing', 'History & Politics', 'Humor', 'Poetry', 'Psychology', 'Science', 'Technology', 'Travel & Maps']
+
+const categoryList = document.querySelector('.categories')
+categoryList.insertAdjacentHTML('afterbegin', Category(categoriesData))
+categoryListener()
+
+const url = `https://www.googleapis.com/books/v1/volumes?q="subject:${categoriesData[0]}"&key=${CONFIG.key}&printType=books&startIndex=0&maxResults=6&langRestrict=en`
 
 fetch(url)
   .then(data => data.json())
@@ -10,7 +18,6 @@ fetch(url)
     const books = data.items
     const booksList = document.querySelector('.books__list')
     books.map(book => booksList.insertAdjacentHTML('beforeend', Card(book)))
-    console.log(books);
   })
-  // .catch((data) => alert('Ошибка получения данных с сервера'))
+  .catch(() => alert('Ошибка получения данных с сервера'))
 
