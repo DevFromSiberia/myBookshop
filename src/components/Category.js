@@ -1,5 +1,5 @@
 import { CONFIG } from '../config'
-import { Card } from './Card'
+import { Card, cardBtnListener } from './Card'
 
 function Category(data) {
   let html = ``
@@ -14,7 +14,7 @@ function Category(data) {
   return html
 }
 
-const categoryListener = () => {
+const categoryListener = (cart) => {
   const categoryNodeList = document.querySelectorAll('.category')
   const listener = (event) => {
     if (event.target.classList.contains('category-active')) return
@@ -34,6 +34,7 @@ const categoryListener = () => {
         const booksList = document.querySelector('.books__list')
         booksList.querySelectorAll('.books__item').forEach(item => booksList.removeChild(item))
         books.map(book => booksList.insertAdjacentHTML('beforeend', Card(book)))
+        cardBtnListener(cart)
       })
       .catch(() => alert('Ошибка получения данных с сервера'))
   }

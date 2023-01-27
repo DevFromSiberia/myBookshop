@@ -3,12 +3,12 @@ import { Card, cardBtnListener } from './components/Card'
 import { Category, categoryListener } from './components/Category'
 import { CONFIG } from './config'
 
-const cartCounter = 0
+const cart = []
 const categoriesData = ['Architecture', 'Art & Fashion', 'Biography', 'Business', 'Crafts & Hobbies', 'Drama', 'Fiction', 'Food & Drink', 'Health & Wellbeing', 'History & Politics', 'Humor', 'Poetry', 'Psychology', 'Science', 'Technology', 'Travel & Maps']
 
 const categoryList = document.querySelector('.categories')
 categoryList.insertAdjacentHTML('afterbegin', Category(categoriesData))
-categoryListener()
+categoryListener(cart)
 
 const url = `https://www.googleapis.com/books/v1/volumes?q="subject:${categoriesData[0]}"&key=${CONFIG.key}&printType=books&startIndex=0&maxResults=6&langRestrict=en`
 
@@ -20,7 +20,7 @@ fetch(url)
     books.map(book => {
       booksList.insertAdjacentHTML('beforeend', Card(book))
     })
-    cardBtnListener()
+    cardBtnListener(cart)
   })
   .catch(() => alert('Ошибка получения данных с сервера'))
 
