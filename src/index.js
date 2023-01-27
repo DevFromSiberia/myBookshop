@@ -3,7 +3,10 @@ import { Card, cardBtnListener } from './components/Card'
 import { Category, categoryListener } from './components/Category'
 import { CONFIG } from './config'
 
-const cart = []
+//cart state
+const cartObj = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : { 'cart': [] }
+const cart = cartObj['cart']
+
 const categoriesData = ['Architecture', 'Art & Fashion', 'Biography', 'Business', 'Crafts & Hobbies', 'Drama', 'Fiction', 'Food & Drink', 'Health & Wellbeing', 'History & Politics', 'Humor', 'Poetry', 'Psychology', 'Science', 'Technology', 'Travel & Maps']
 
 const categoryList = document.querySelector('.categories')

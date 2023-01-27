@@ -42,21 +42,35 @@ function Card(book) {
 
 const cardBtnListener = (cart) => {
   const booksItems = document.querySelectorAll(".books__item")
+
   const listener = (event) => {
     const cartCounterElement = document.querySelector('#cartCounter')
     let curCount = +cartCounterElement.textContent
-    cartCounterElement.textContent = curCount + 1
-    event.target.classList.add('buyBtn-inCart')
-    event.target.textContent = 'in the cart'
-    cart.push(event.target.dataset.id)
-    event.target.removeEventListener('click', listener)
+    if (!cart.includes(event.target.dataset.id)) {
+      cartCounterElement.textContent = curCount + 1
+      event.target.classList.add('buyBtn-inCart')
+      event.target.textContent = 'in the cart'
+      cart.push(event.target.dataset.id)
+      localStorage.setItem("cart", JSON.stringify({ "cart": cart }))
+    } else {
+      cartCounterElement.textContent = curCount - 1
+      event.target.classList.remove('buyBtn-inCart')
+      event.target.textContent = 'buy now'
+      cart.splice(cart.indexOf(event.target.dataset.id, 1))
+      localStorage.setItem("cart", JSON.stringify({ "cart": cart }))
+    }
+
   }
 
   booksItems.forEach(book => {
     const bookBtn = book.querySelector('.buyBtn')
+    const cartCounterElement = document.querySelector('#cartCounter')
+    let curCount = +cartCounterElement.textContent
     if (cart.includes(bookBtn.dataset.id)) {
+      cartCounterElement.textContent = curCount + 1
       bookBtn.classList.add('buyBtn-inCart')
       bookBtn.textContent = 'in the cart'
+      bookBtn.addEventListener('click', listener)
     } else {
       bookBtn.addEventListener('click', listener)
     }
