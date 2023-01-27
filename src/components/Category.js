@@ -1,5 +1,5 @@
 import { CONFIG } from '../config'
-import Card from './Card'
+import { Card } from './Card'
 
 function Category(data) {
   let html = ``

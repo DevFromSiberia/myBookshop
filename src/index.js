@@ -1,9 +1,9 @@
 import './styles/index.scss'
-import { swiper, mySlider } from './components/Slider';
-import Card from './components/Card'
+import { Card, cardBtnListener } from './components/Card'
 import { Category, categoryListener } from './components/Category'
 import { CONFIG } from './config'
 
+const cartCounter = 0
 const categoriesData = ['Architecture', 'Art & Fashion', 'Biography', 'Business', 'Crafts & Hobbies', 'Drama', 'Fiction', 'Food & Drink', 'Health & Wellbeing', 'History & Politics', 'Humor', 'Poetry', 'Psychology', 'Science', 'Technology', 'Travel & Maps']
 
 const categoryList = document.querySelector('.categories')
@@ -17,7 +17,10 @@ fetch(url)
   .then(data => {
     const books = data.items
     const booksList = document.querySelector('.books__list')
-    books.map(book => booksList.insertAdjacentHTML('beforeend', Card(book)))
+    books.map(book => {
+      booksList.insertAdjacentHTML('beforeend', Card(book))
+    })
+    cardBtnListener()
   })
   .catch(() => alert('Ошибка получения данных с сервера'))
 

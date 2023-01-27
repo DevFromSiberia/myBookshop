@@ -1,14 +1,15 @@
 import { formatAuthor, formatDescr, formatPrice } from './Format'
 import placeholderImg from '../img/placeholderImg.png'
 
-export default function Card(book) {
+function Card(book) {
   let authors = formatAuthor(book.volumeInfo.authors)
   let title = book.volumeInfo.title
   let description = formatDescr(book.volumeInfo.description)
   let price = formatPrice(book.saleInfo.listPrice)
   let imageUrl = book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : placeholderImg
+  let id = book.id
 
-  const html = `<li class="books__item">
+  const html = `<li class="books__item" data-id="${id}">
   <div style="background-image: url(${imageUrl});" class="cover"></div>
   <div class="descr">
     <p class="author">${authors}</p>
@@ -33,8 +34,23 @@ export default function Card(book) {
     </div>
     <p class="text">${description}</p>
     <div class="price">${price}</div>
-    <button class="buyBtn">buy now</button>
+    <button class="buyBtn" data-id="${id}">buy now</button>
   </div>
 </li>`
   return html
 }
+
+const cardBtnListener = () => {
+  const booksItems = document.querySelectorAll(".books__item")
+  const listener = (event) => {
+    const cartCounterElement = document.querySelector('#cartCounter')
+    let curCount = +cartCounterElement.textContent
+    cartCounterElement.textContent = curCount + 1
+    event.target.classList.add('buyBtn-inCart')
+    event.target.textContent = 'in the cart'
+    event.target.removeEventListener('click', listener)
+  }
+  const bookBtn = booksItems.forEach(book => book.querySelector('.buyBtn').addEventListener('click', listener))
+}
+
+export { Card, cardBtnListener }
