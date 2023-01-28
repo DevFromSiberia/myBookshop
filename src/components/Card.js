@@ -6,7 +6,7 @@ function Card(book) {
   const title = book.volumeInfo.title
   const description = formatDescr(book.volumeInfo.description)
   const price = formatPrice(book.saleInfo.listPrice)
-  const imageUrl = book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : placeholderImg
+  const imageUrl = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : placeholderImg
   const id = book.id
   const averageRating = fomatAvRate(book.volumeInfo.averageRating) ? fomatAvRate(book.volumeInfo.averageRating) : ''
   const ratingCount = book.volumeInfo.ratingsCount ? `${book.volumeInfo.ratingsCount}  revies` : ""

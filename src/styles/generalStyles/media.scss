@@ -54,12 +54,7 @@
 
 @media (max-width: 1000px) {
   .books__list {
-    .books__item {
-      .cover {
-        min-width: calc(212px*0.8);
-        height: calc(212px*0.8);
-      }
-    
+    .books__item {   
       .descr {
         margin-left: 15px;
       }

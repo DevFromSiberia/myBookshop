@@ -1,6 +1,8 @@
 import { CONFIG } from '../config'
 import { Card, cardBtnListener } from './Card'
 
+let activeCategory = ''
+
 function Category(data) {
   let html = ``
   data.forEach((category, index) => {
@@ -11,8 +13,11 @@ function Category(data) {
     }
 
   })
+  activeCategory = data[0]
   return html
 }
+
+
 
 const categoryListener = (cart) => {
   const categoryNodeList = document.querySelectorAll('.category')
@@ -27,6 +32,9 @@ const categoryListener = (cart) => {
 
     event.target.classList.add('category-active')
     const url = `https://www.googleapis.com/books/v1/volumes?q="subject:${event.target.innerText}"&key=${CONFIG.key}&printType=books&startIndex=0&maxResults=6&langRestrict=en`
+
+    activeCategory = event.target.innerText
+
     fetch(url)
       .then(data => data.json())
       .then(data => {
@@ -41,4 +49,8 @@ const categoryListener = (cart) => {
   categoryNodeList.forEach(item => item.addEventListener('click', listener))
 }
 
-export { Category, categoryListener }
+const getActiveCategory = () => {
+  return activeCategory
+}
+
+export { Category, categoryListener, getActiveCategory }
