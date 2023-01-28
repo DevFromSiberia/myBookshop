@@ -1,6 +1,7 @@
 import './styles/index.scss'
 import { Card, cardBtnListener } from './components/Card'
 import { Category, categoryListener } from './components/Category'
+import { swiper } from './components/Slider'
 import { CONFIG } from './config'
 import { LoadMore, loadMoreListener } from './components/LoadMore'
 
