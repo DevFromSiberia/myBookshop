@@ -1,6 +1,8 @@
 const path = require('path');
-const miniCss = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
 module.exports = {
   entry: './src/index.js',
@@ -17,7 +19,7 @@ module.exports = {
     port: 9000,
     open: true
   },
-  mode: 'development',
+  mode: 'production',
   module: {
     rules: [
       {
@@ -27,22 +29,62 @@ module.exports = {
       {
         test: /\.(s*)css$/,
         use: [
-          miniCss.loader,
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',
         ]
       },
       {
-        test: /\.png/,
+        test: /\.(jpe?g|png|gif|svg)$/i,
         type: 'asset/resource'
       }],
   },
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin(),
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.imageminMinify,
+          options: {
+            plugins: [
+              ["gifsicle", { interlaced: true }],
+              ["jpegtran", { progressive: true }],
+              ["optipng", { optimizationLevel: 5 }],
+              [
+                "svgo",
+                {
+                  plugins: [
+                    {
+                      name: "preset-default",
+                      params: {
+                        overrides: {
+                          removeViewBox: false,
+                          addAttributesToSVGElement: {
+                            params: {
+                              attributes: [
+                                { xmlns: "http://www.w3.org/2000/svg" },
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        }
+      })
+    ]
+  },
   plugins: [
-    new miniCss({
+    new MiniCssExtractPlugin({
       filename: 'style.css',
     }),
     new HtmlWebpackPlugin({
-      template: "./index.html"
+      template: "./index.html",
+      minify: true
     })
   ]
 }
